@@ -1,0 +1,33 @@
+# Git Ignore File.
+# DMW
+
+# use glob syntax.
+syntax: glob
+
+meshgen.log
+import.txt
+export.txt
+data/mesh/transfer.obj
+proc
+*.bin
+*.orig
+*.URL
+*.bak
+commit.txt
+*~
+
+# ===== ===== Languages ===== ===== 
+# C variant files
+*.o
+*.gch
+
+# Java
+*.class
+.classpath
+
+# Python
+*__pycache__*
+*.pyc
+
+# ===== ===== Development Environments ===== ===== 
+
