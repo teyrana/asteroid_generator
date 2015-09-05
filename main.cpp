@@ -96,7 +96,7 @@ extern "C" {
 	const bool generate_grid=false;
 	const bool generate_asteroid=true;
 	const bool generate_simplex_hills = false; //false;
-	const bool apply_impacts = false; //true;
+	const bool apply_impacts = true;
 
 	Mesh* gen= new Terrain();
 
@@ -109,22 +109,18 @@ extern "C" {
 	if (generate_asteroid){
 	    gen->load_sphere_81920();
 	    gen->set_scale( 1000 );
-	    
+	    fprintf(stderr, "..>> Asteroid loaded.\n");
+
 	    SimplexEffect simplex;
 	    simplex.setMesh( gen);
 	    simplex.set_persistence( 0.95);
 	    simplex.set_frequency( 0.28/gen->scale);
 	    simplex.apply_effect( 2, 0.8*gen->scale, 6*gen->scale);
 	    
-	    BombardmentEffect bomb;
-	    bomb.setMesh( gen);
-	    // ApplyMeteorImpacts
-	    bomb.apply_effect( 1000, 0.9, 23);
-	    //bomb.apply_effect( 600, 0.25, 1.6);
-	    //bomb.apply_effect( 12, 1.0, 50);
-	    //bomb.apply_effect( 200, 1.0, 0.8);
+
+	    fprintf(stderr, "..>> Finished Generating Asteroid\n");
 	}
-	
+
 	if (generate_simplex_hills){	    
 	    gen->load_grid( 200, 200, 250);
 	    SimplexEffect simplex;
@@ -138,10 +134,14 @@ extern "C" {
 
 	    BombardmentEffect bomb;
 	    bomb.setMesh( gen);
+	    fprintf(stderr, "    set effect mesh.\n");
+
 	    // ApplyMeteorImpacts
 	    //bomb.apply_effect( 1, 10, 1000);
 	    //bomb.apply_effect( 1, 0.1, 0.25);
+	    bomb.apply_effect( 1000, 0.9, 23);
 	    bomb.apply_effect( 540, 0.1, 12);
+	    fprintf(stderr, "    Effect applied.\n");
 	}
 
 
@@ -166,9 +166,10 @@ extern "C" {
 	// fprintf( stderr, "  >> terrain initialized.\n");
 
 	gen->dump_summary( stderr);
+	fprintf(stderr, "    Summary Dumped.\n");
 	//gen->write_to_header( "grid" );
 	gen->write_to_obj_vf( mesh_filename);
-	
+	fprintf(stderr, "    File written.\n");
 	return 0;
     }
     

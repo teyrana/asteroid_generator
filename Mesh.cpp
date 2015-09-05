@@ -537,6 +537,11 @@ void Mesh::write_to_obj_vf( const char* obj_fname){
 
     FILE* objf = fopen( obj_fname, "w");
 
+    if( NULL == objf ){
+	fprintf(stderr, "!! Could not save to file: unable to get file handle.\n");
+	return;
+    }
+
     // write header
     fprintf(objf, "# Wavefront OBJ File\n");
     fprintf(objf, "# Custom .OBJ  Output Code \n");

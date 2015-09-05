@@ -5,10 +5,10 @@
 
 # define locations
 DIST_DIR        = .
-DATA_DIR        = ../data
+DATA_DIR        = .
 CPP_SOURCE_DIR  = .
 BUILD_DIR       = build
-MESH_DIR        = ../data/mesh
+MESH_DIR        = .
 
 # files
 SRC_EXT         =cpp
